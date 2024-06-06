@@ -1,0 +1,55 @@
+# Global timeout for RPC queries, in seconds. Defaults to 5.
+timeout = 5
+# The address the exporter will listen on .Defaults to ":9560".
+listen-address = ":9565"
+
+
+[log]
+
+level = "debug"
+
+json = false
+
+# Per-chain config.
+[[chains]]
+
+name = "swisstronik_1291-1"
+
+lcd-endpoint = "https://swisstronik-t-api.noders.services"
+
+base-denom = "swtr"
+denoms = [
+    { denom = "uswtr", display-denom = "swtr" },
+]
+
+bech-wallet-prefix = "swtr"
+
+validators = [
+    { address = "swtrvaloper12uvappnj3e6xnrsjsre9ktd4tw95j5dtjxfp5y", consensus-address = "swtrvalcons1sl2x0frssruqqwkagfm60mdrl847m3dsxjk8af" }
+
+    
+]
+# List of queries to enable/disable.
+# If the list is not provided, or the value for query is not specified,
+# then this query will be enabled. Useful if some queries on some chains are broken or
+# do not return any meaningful value (like signing info on e-Money) or are too heavy and
+# the node can't handle such requests (like delegators count on Cosmos Hub).
+[chains.queries]
+# Query for validator info
+validator = true
+# Query for delegators count
+# Query for self-delegated amount
+# Query for all delegators count/ranking. Also used in total bonded tokens calculation.
+validators = true
+# Query for validator unclaimed commission
+commission = true
+# Query for validator wallet balance
+balance = true
+# Query for validator signing info
+signing-info = true
+# Query for chain slashing params/missed blocks window
+slashing-params = true
+# Query for chain staking params/max validators count
+staking-params = false
+
+
